@@ -1,4 +1,4 @@
-﻿using CatalogMicroservice.Model;
+using CatalogMicroservice.Model;
 using CatalogMicroservice.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -30,8 +30,11 @@ public class CatalogController(ICatalogRepository catalogRepository) : Controlle
     // POST api/<CatalogController>
     [HttpPost]
     [Authorize]
-    public IActionResult Post([FromBody] CatalogItem catalogItem)
+    public IActionResult Post([FromBody] CatalogItem? catalogItem)
     {
+        if (catalogItem == null || string.IsNullOrWhiteSpace(catalogItem.Name))
+            return BadRequest("Data de entrada inválida. El nombre es obligatorio.");
+
         catalogRepository.InsertCatalogItem(catalogItem);
         return CreatedAtAction(nameof(Get), new { id = catalogItem.Id }, catalogItem);
     }

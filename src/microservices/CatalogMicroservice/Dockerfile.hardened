@@ -1,0 +1,41 @@
+# syntax=docker/dockerfile:1
+
+# Build stage
+FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine AS build
+WORKDIR /src
+COPY ["src/microservices/CatalogMicroservice/CatalogMicroservice.csproj", "microservices/CatalogMicroservice/"]
+COPY src/middlewares middlewares/
+RUN dotnet restore "microservices/CatalogMicroservice/CatalogMicroservice.csproj"
+
+WORKDIR "/src/microservices/CatalogMicroservice"
+COPY src/microservices/CatalogMicroservice .
+RUN dotnet build "CatalogMicroservice.csproj" -c Release -o /app/build
+
+# Publish stage
+FROM build AS publish
+RUN dotnet publish "CatalogMicroservice.csproj" -c Release -o /app/publish /p:UseAppHost=false
+
+# Final runtime image
+# Using alpine variant for smallest attack surface
+FROM mcr.microsoft.com/dotnet/aspnet:8.0-alpine AS final
+
+# Configurar zona horaria u otras dependencias estrictamente necesarias
+RUN apk upgrade --no-cache && \
+    apk add --no-cache tzdata && \
+    rm -rf /var/cache/apk/*
+
+# Usar el usuario no-root por defecto 'app' en las imágenes .NET 8
+USER app
+WORKDIR /app
+
+# Exponer puerto > 1024 para ambiente no-root
+ENV ASPNETCORE_URLS=http://+:8080
+EXPOSE 8080
+
+COPY --chown=app:app --from=publish /app/publish .
+
+# Explicit healthcheck usando wget (común en alpine) hacia el endpoint '/healthz'
+HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
+  CMD wget --quiet --tries=1 --spider http://localhost:8080/healthz || exit 1
+
+ENTRYPOINT ["dotnet", "CatalogMicroservice.dll"]
