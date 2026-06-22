@@ -73,7 +73,7 @@ Para ver el detalle paso a paso de lo realizado, puede consultar los siguientes 
 - [Plan de Trabajo](./docs/plan_de_trabajo.md)
 - [Bitácora de Implementación](./docs/bitacora.md)
 
-## URL's Documentación:
+## 6. URL's Documentación BEFORE - AFTER
 
 - [Before](./trivy-report-before.txt)
 - [After](./trivy-report-after.txt)
