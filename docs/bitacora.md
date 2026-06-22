@@ -37,5 +37,11 @@ Esta bitácora registra de manera cronológica todas las acciones, análisis y d
 ### 5. Verificación Final
 - **Evidencia:** Se generó `trivy-report-after.txt` mostrando 0 vulnerabilidades de severidad CRITICAL, HIGH o MEDIUM después de aplicar el hardening.
 
+### 6. Entrega y Sincronización (Final)
+- **Acción:** Configuración del repositorio remoto `https://github.com/elkingutierrex/devsecops-challenge.git`.
+- **Acción:** Sincronización de ramas locales (`main`, `develop`, `feature/hardening-catalog`) con el repositorio remoto del usuario.
+- **Acción:** Creación de Workflow automatizado en `.github/workflows/security-scan.yml` para asegurar la continuidad del hardening en el pipeline de CI/CD.
+- **Acción:** Actualización exhaustiva del `README.md` con tablas de vulnerabilidades y estrategias de mitigación.
+
 ---
-*Próximos pasos: Redacción del README.md final con toda la documentación técnica solicitada.*
+*Estado: Reto finalizado y documentado.*
