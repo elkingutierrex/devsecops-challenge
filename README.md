@@ -75,8 +75,8 @@ Para ver el detalle paso a paso de lo realizado, puede consultar los siguientes 
 
 ## URL's Documentación:
 
-- [Before]: (./trivy-report-before.txt)
-- [After]: (./trivy-report-after.txt)
+- [Before] (./trivy-report-before.txt)
+- [After] (./trivy-report-after.txt)
 
 ---
 
