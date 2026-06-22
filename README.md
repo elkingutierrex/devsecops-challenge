@@ -73,9 +73,10 @@ Para ver el detalle paso a paso de lo realizado, puede consultar los siguientes 
 - [Plan de Trabajo](./docs/plan_de_trabajo.md)
 - [Bitácora de Implementación](./docs/bitacora.md)
 
-- URL's Documentación:
-  `Before: https://github.com/elkingutierrex/devsecops-challenge/blob/main/trivy-report-before.txt`
-  `After: https://github.com/elkingutierrex/devsecops-challenge/blob/main/trivy-report-after.txt`
+## URL's Documentación:
+
+- [Before]: (./trivy-report-before.txt)
+- [After]: (./trivy-report-after.txt)
 
 ---
 
