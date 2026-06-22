@@ -79,5 +79,5 @@ Para ver el detalle paso a paso de lo realizado, puede consultar los siguientes 
 
 ---
 
-**Entregado por:** Antigravity (AI Assistant)
+**Utilizando** Antigravity (AI Assistant)
 **Metodología:** Git Flow / DevSecOps Standards
